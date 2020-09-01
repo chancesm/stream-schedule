@@ -103,3 +103,6 @@ body {
 .itemContent {
   height: 168px;
 }
+.active {
+  background-color: #6417ca;
+}

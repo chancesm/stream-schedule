@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
+import dayjs from 'dayjs';
 
 function App() {
+  const now = dayjs();
+  const day = now.format('dddd').toLowerCase();
   const [schedule, setSchedule] = useState([]);
   const [images, setImages] = useState({});
   useEffect(() => {
@@ -19,11 +22,11 @@ function App() {
       <div className="bottom">
         <div className="schedule">
           <div className="days">
-            <div className="day">MONDAY</div>
-            <div className="day">TUESDAY</div>
-            <div className="day">WEDNESDAY</div>
-            <div className="day">THURSDAY</div>
-            <div className="day">FRIDAY</div>
+            <div className={day === "monday" ? "day active" :  "day"}>MONDAY</div>
+            <div className={day === "tuesday" ? "day active" :  "day"}>TUESDAY</div>
+            <div className={day === "wednesday" ? "day active" :  "day"}>WEDNESDAY</div>
+            <div className={day === "thursday" ? "day active" :  "day"}>THURSDAY</div>
+            <div className={day === "friday" ? "day active" :  "day"}>FRIDAY</div>
           </div>
           <div className="content">
             {schedule.map(item => (
