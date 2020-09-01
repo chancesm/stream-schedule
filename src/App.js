@@ -2,8 +2,10 @@ import React, { useEffect, useState } from 'react';
 
 function App() {
   const [schedule, setSchedule] = useState([]);
+  const [images, setImages] = useState({});
   useEffect(() => {
     fetch('/.netlify/functions/getSchedule').then(response => response.json()).then(data => setSchedule(data));
+    fetch('/.netlify/functions/getImages').then(response => response.json()).then(data => setImages(data));
   }, [])
   return (
     <div className="App">
@@ -26,8 +28,20 @@ function App() {
           <div className="content">
             {schedule.map(item => (
               <div key={item.id} className="scheduleItem" style={{width: `${224 * (item.fields.Size ?? 1)}px`}}>
-                <div className="eventTitle">{item.fields.Title}</div>
-                <div className="description">{item.fields.Description}</div>
+                <div className="itemContent">
+                  <div className="eventTitle">{item.fields.Title}</div>
+                  <div className="description">{item.fields.Description}</div>
+                </div>
+                <div className="images">
+                  {item.fields.Images.map(image => {
+                    const foundImage = images[image];
+                    return foundImage ? (
+                      <div key={image}>
+                        <img src={foundImage.Link} alt={foundImage.Name} width="80" height="80"/>
+                      </div>
+                    ) : null;
+                  })}
+                </div>
               </div>
             ))}
           </div>

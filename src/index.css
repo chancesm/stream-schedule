@@ -45,7 +45,6 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 256px;
 }
 .days, .content {
   width: 100%;
@@ -93,4 +92,14 @@ body {
 }
 .eventTitle, .description {
   text-align: center;
+}
+.images {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin: 16px 0;
+}
+.itemContent {
+  height: 168px;
 }
